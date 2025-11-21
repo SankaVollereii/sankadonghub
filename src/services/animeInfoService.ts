@@ -44,7 +44,7 @@ export default async function animeInfoService(routeParams: {
   animeId: string;
 }) {
   const { animeId } = routeParams;
-  const result = await skuy<NewApiDetail>(`/detail/${animeId}`);
+  const result = await sanka<NewApiDetail>(`/detail/${animeId}`);
   const raw = result.data;
 
   const mappedData: AnimeDetails = {
