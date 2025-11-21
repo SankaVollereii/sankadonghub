@@ -21,23 +21,14 @@ const {
 const { batchId } = Astro.params;
 const batchInfo = await batchInfoService({ batchId: batchId! });
 const { data, ok, statusCode, message, statusMessage } = batchInfo;
-
 const title = ok ? `Download Batch anime ${data.title} - ${siteName}` : `Error - ${siteName}`;
 ---
 
 {
   !ok ? (
-    <Error
-      statusCode={statusCode}
-      message={message || statusMessage}
-    />
+    <Error statusCode={statusCode} message={message || statusMessage} />
   ) : (
-    <Layout
-      seo={{
-        title,
-        description: "",
-      }}
-    >
+    <Layout seo={{ title, description: "" }}>
       <Breadcrumb
         currentPage={{
           title: data.title,
@@ -48,20 +39,11 @@ const title = ok ? `Download Batch anime ${data.title} - ${siteName}` : `Error -
       <Sesepuh>
         <Content>
           <div class="relative">
-            <img
-              src={data.poster}
-              class="w-full aspect-[16/6] object-cover rounded-t-md"
-              alt={data.title}
-            />
+            <img src={data.poster} class="w-full aspect-[16/6] object-cover rounded-t-md" alt={data.title} />
             <div class="absolute top-0 right-0 bottom-0 left-0 rounded-t-md bg-gradient-to-t from-zinc-100 dark:from-zinc-900 to-transparent" />
           </div>
-
           <div class="flex flex-col sm:flex-row justify-center items-center sm:justify-start gap-4 sm:items-end xs:-mt-[100px] sm:-mt-[150px] relative p-4">
-            <img
-              src={data.poster}
-              alt={data.title}
-              class="w-[150px] sm:w-[170px] md:w-[200px] rounded-md aspect-[3/4]"
-            />
+            <img src={data.poster} alt={data.title} class="w-[150px] sm:w-[170px] md:w-[200px] rounded-md aspect-[3/4]" />
             <div class="flex flex-col gap-3 items-center text-center sm:items-start sm:text-left">
               <h1 class="text-xl md:text-2xl font-extrabold line-clamp-2">
                 {data.synonyms || data.english || data.title}
@@ -69,21 +51,14 @@ const title = ok ? `Download Batch anime ${data.title} - ${siteName}` : `Error -
               <p class="flex">
                 <span class="flex gap-1 items-center">
                   <StarIcon class="w-4 h-4" />
-                  {data.score} |
-                  {data.status}
+                  {data.score} | {data.status}
                 </span>
               </p>
               <div class="flex gap-2">
-                <a
-                  href="#download"
-                  class="max-w-min flex gap-1 text-white bg-amber-700 hover:bg-amber-800 focus:outline-none focus:ring-4 focus:ring-amber-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
-                >
+                <a href="#download" class="max-w-min flex gap-1 text-white bg-amber-700 hover:bg-amber-800 focus:outline-none focus:ring-4 focus:ring-amber-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800">
                   Download
                 </a>
-                <a
-                  href={generateUrlPath("/anime", data.animeId)}
-                  class="max-w-min flex gap-1 text-white bg-sky-700 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                >
+                <a href={generateUrlPath("/anime", data.animeId)} class="max-w-min flex gap-1 text-white bg-sky-700 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">
                   Info
                 </a>
               </div>
@@ -94,19 +69,10 @@ const title = ok ? `Download Batch anime ${data.title} - ${siteName}` : `Error -
             {data.synopsis.paragraphs.map((paragraph) => (
               <p class="text-zinc-600 dark:text-zinc-400">{paragraph}</p>
             ))}
-            <div class="flex flex-col">
-              {data.synopsis.connections?.map((conn) => (
-                <a
-                  href={generateUrlPath("/anime", conn.animeId)}
-                  class="text-blue-600 dark:text-blue-400"
-                >
-                  {conn.title}
-                </a>
-              ))}
-            </div>
           </div>
 
           <WidgetTitle title="Detail anime" />
+          {/* FIX: Gunakan Component PascalCase */}
           <AnimeDetails anime={data} />
 
           <WidgetTitle title="Link Download" />
