@@ -1,10 +1,23 @@
-import sanka from "@utils/sanka";
+import skuy from "@utils/skuy";
 
 interface NewApiDetail {
-  [key: string]: any;
+  title: string;
+  alter_title: string;
+  poster: string;
+  rating: string;
+  studio: string;
+  released: string;
+  duration: string;
+  episodes_count: string;
+  season: string;
+  type: string;
+  status: string;
+  genres: { name: string; slug: string; url: string }[];
+  synopsis: string;
+  episodes_list: { episode: string; slug: string; url: string }[];
 }
 
-interface animeDetails {
+interface AnimeDetails {
   title: string;
   poster: string;
   score: { value: string; users: string };
@@ -31,48 +44,42 @@ export default async function animeInfoService(routeParams: {
   animeId: string;
 }) {
   const { animeId } = routeParams;
-  const result = await sanka<NewApiDetail>(`/detail/${animeId}`);
-  
-  const rawData = result.data || {};
-  let detail = rawData.data || rawData.anime_detail || rawData.donghua_detail || rawData;
+  const result = await skuy<NewApiDetail>(`/detail/${animeId}`);
+  const raw = result.data;
 
-  if (!detail.title && rawData.title) {
-      detail = rawData;
-  }
-
-  const mappedData: animeDetails = {
-      title: detail.title || "???",
-      poster: detail.poster || "",
-      score: { value: detail.rating || "N/A", users: "" },
-      japanese: detail.alter_title || "",
-      synonyms: detail.alter_title || "",
-      english: detail.title || "",
-      status: detail.status || "Unknown",
-      type: detail.type || "TV",
+  const mappedData: AnimeDetails = {
+      title: raw.title,
+      poster: raw.poster,
+      score: { value: raw.rating || "N/A", users: "" },
+      japanese: raw.alter_title,
+      synonyms: raw.alter_title,
+      english: raw.title,
+      status: raw.status || "Unknown",
+      type: raw.type,
       source: "Original",
-      duration: detail.duration || "-",
-      episodes: parseInt(detail.episodes_count) || null,
-      season: detail.season || "-",
-      studios: detail.studio || "-",
+      duration: raw.duration,
+      episodes: parseInt(raw.episodes_count) || null,
+      season: raw.season,
+      studios: raw.studio,
       producers: "",
-      aired: detail.released || "-",
+      aired: raw.released,
       trailer: "",
       batchList: [],
       synopsis: {
-          paragraphs: [detail.synopsis || "No synopsis available."],
+          paragraphs: [raw.synopsis],
           connections: []
       },
-      genreList: (detail.genres || []).map((g: any) => ({
+      genreList: (raw.genres || []).map(g => ({
           title: g.name,
           genreId: g.slug
       })),
-      episodeList: (detail.episodes_list || []).map((e: any) => {
+      episodeList: (raw.episodes_list || []).map(e => {
           const match = e.episode.match(/Episode\s+(\d+(\.\d+)?)/i);
           
           let displayTitle = e.episode; 
 
           if (match) {
-              displayTitle = ` Ep ${match[1]}`;
+              displayTitle = `Ep ${match[1]}`;
           } else {
               const slugParts = e.slug.split('-');
               const numIndex = slugParts.indexOf('episode');
