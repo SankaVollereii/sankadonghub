@@ -1,4 +1,4 @@
-import skuy from "@utils/skuy";
+import sanka from "@utils/sanka";
 
 interface NewApiDetail {
   title: string;
