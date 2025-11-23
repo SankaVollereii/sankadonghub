@@ -14,7 +14,7 @@ Api Donghua: **[https://www.sankavollerei.com/anime](https://www.sankavollerei.c
 
 Host your own instance of <a href="https://sankadonghub.vercel.app">sankadonghub</a>  on vercel
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/SankaVollereii/jsankadonghub)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/SankaVollereii/sankadonghub)
 
 ---
 
