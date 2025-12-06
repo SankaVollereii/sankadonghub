@@ -1,63 +1,72 @@
 # SankaDonghub
 
----
+Platform streaming donghua modern yang dibangun dengan teknologi web terkini.
 
-### 💻 Source Code
+## 🚀 Teknologi
 
-- Teknologi : Astro, Node, TypeScript, Tailwind, Flowbite
-  
-Api Donghua: **[https://www.sankavollerei.com/anime](https://www.sankavollerei.com/anime)**
+- **Framework**: Astro
+- **Runtime**: Node.js
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Components**: Flowbite
 
----
+## 🔗 API
 
-### Vercel
+Donghua API tersedia di: **[https://www.sankavollerei.com/anime](https://www.sankavollerei.com/anime)**
 
-Host your own instance of <a href="https://sankadonghub.vercel.app">sankadonghub</a>  on vercel
+## 📦 Instalasi
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/SankaVollereii/sankadonghub)
-
----
-
-## Installasi
-
-1. clone atau download repo
+### Clone Repository
 
 ```sh
 git clone https://github.com/SankaVollereii/sankadonghub.git
-```
-
-2. masuk ke repo
-
-```sh
 cd sankadonghub
 ```
 
-3. install dependensi
+### Install Dependencies
 
 ```sh
 npm install
 ```
 
-4. menjalankan server mode pengembangan
+## 🛠️ Development
+
+Menjalankan server dalam mode pengembangan:
 
 ```sh
 npm run dev
 ```
 
-5. build project
+## 🏗️ Build & Preview
+
+Build project untuk production:
 
 ```sh
 npm run build
 ```
 
-6. preview project yang sudah dibuild
+Preview hasil build:
 
 ```sh
 npm run preview
 ```
 
-app ini berjalan di sisi server, secara default menggunakan node sebagai adapternya, selengkapnya liat [disini](https://docs.astro.build/en/guides/on-demand-rendering/#server-adapters), untuk menjalankanya gunakan perintah berikut :
+## 🚀 Deployment
+
+Aplikasi ini berjalan di sisi server (SSR) dan secara default menggunakan Node.js sebagai adapter. Untuk menjalankan aplikasi dalam mode production:
 
 ```sh
 node ./dist/server/entry.mjs
 ```
+
+Untuk informasi lebih lanjut tentang adapter server, kunjungi [dokumentasi Astro](https://docs.astro.build/en/guides/on-demand-rendering/#server-adapters).
+
+## 🤝 Contributing
+
+Kontribusi, issues, dan feature requests sangat diterima!
+
+## 👨‍💻 Author
+
+**SankaVollerei**
+
+- GitHub: [@SankaVollereii](https://github.com/SankaVollereii)
